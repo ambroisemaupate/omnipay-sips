@@ -89,7 +89,7 @@ class Gateway extends AbstractGateway
      * therefore the purchase action combines authorization and capture
      *
      * @param array $parameters
-     * @return SipsBinaryResult
+     * @return \Omnipay\Common\Message\RequestInterface|RequestCall
      */
     public function purchase(array $parameters = array())
     {
@@ -99,7 +99,7 @@ class Gateway extends AbstractGateway
         /** @var $paymentRequest RequestCall */
         $paymentRequest = $this->createRequest('\Omnipay\Sips\Message\RequestCall', $parameters);
 
-        return $paymentRequest->send();
+        return $paymentRequest;
     }
 
     /**
@@ -108,13 +108,13 @@ class Gateway extends AbstractGateway
      * the user coming back
      *
      * @param array $parameters
-     * @return SipsBinaryResult
+     * @return \Omnipay\Common\Message\RequestInterface|ResponseCall
      */
     public function completePurchase(array $parameters = array())
     {
         /** @var ResponseCall $paymentResponse */
         $paymentResponse = $this->createRequest('\Omnipay\Sips\Message\ResponseCall', $parameters);
 
-        return $paymentResponse->send();
+        return $paymentResponse;
     }
 }
