@@ -24,6 +24,7 @@ abstract class SipsBinaryCall extends AbstractRequest
      */
     protected $merchant;
 
+
     #region merchant setters
 
     /**

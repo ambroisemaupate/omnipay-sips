@@ -107,7 +107,7 @@ class RequestCall extends SipsBinaryCall
      */
     public function getData()
     {
-        $this->validate('amount', 'card');
+        $this->validate('amount', 'returnUrl', 'cancelUrl', 'card', 'currency');
         $this->getCard()->validate();
         return $this->buildRequest();
     }
