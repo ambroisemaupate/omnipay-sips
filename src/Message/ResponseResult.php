@@ -590,7 +590,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * Contient le résultat de l’authentification du paiement.
-     * 
+     *
      * @return mixed
      */
     public function getTransactionCondition()

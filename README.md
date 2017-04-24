@@ -10,6 +10,7 @@ $gateway->setMerchantId('XXXXXXXXXXXXXXXXX');
 $gateway->setSipsFolderPath('/path/to/sogenactif');
 
 $card = new \Omnipay\Sips\OffsiteCreditCard();
+$card->setEmail('test@test.com');
 
 // Send purchase request
 $request = $gateway->purchase(
@@ -17,17 +18,24 @@ $request = $gateway->purchase(
         'clientIp' => $request->getClientIp(),
         'amount' => '10.00',
         'currency' => 'EUR',
-        'returnUrl' => $this->generateUrl('cartRoute', [], UrlGenerator::ABSOLUTE_URL),
-        'notifyUrl' => $this->generateUrl('cartRoute', [], UrlGenerator::ABSOLUTE_URL),
-        'cancelUrl' => $this->generateUrl('cartRoute', [], UrlGenerator::ABSOLUTE_URL),
+        'returnUrl' => $this->generateUrl('completePurchaseRoute', [], UrlGenerator::ABSOLUTE_URL),
+        'notifyUrl' => $this->generateUrl('completePurchaseRoute', [], UrlGenerator::ABSOLUTE_URL),
+        'cancelUrl' => $this->generateUrl('cancelRoute', [], UrlGenerator::ABSOLUTE_URL),
         'card' => $card
     ]
 );
 $response = $request->send();
 
 if ($response->isSuccessful()) {
-    echo $response->getData();
+    echo $response->getBuffer();
 } else {
     echo $response->getMessage();
 }
 ```
+
+## Numéros de carte de tests
+
+| Numéro | Réponse |
+| --- | --- |
+| 4974934125497800 | 00 (acceptée) |
+| 4972187615205 | 05 (refusée) |

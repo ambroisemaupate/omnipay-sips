@@ -114,7 +114,13 @@ abstract class SipsBinaryResult extends AbstractResponse
             $results = explode("!", "$paramString");
 
             // $results can contain a subset of all the components
-            $components = array_slice($this->getResultComponents(), 0, count($results));
+            if (count($this->getResultComponents()) > count($results)) {
+                $components = array_slice($this->getResultComponents(), 0, count($results));
+            } else {
+                // sometimes there are more result than components too.
+                $components = $this->getResultComponents();
+                $results = array_slice($results, 0, count($this->getResultComponents()));
+            }
 
             // Creates a key/value array from the result
             $parameters = array_combine($components, $results);
