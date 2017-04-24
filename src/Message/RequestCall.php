@@ -28,8 +28,7 @@ class RequestCall extends SipsBinaryCall
         if (empty($result)) {
             if (file_exists($path_bin) === false) {
                 $response->setError(sprintf('Impossible to launch binary file - Path to binary file seem to be not correct (%s)<br />Command line : %s', $path_bin, $data));
-            }
-            else if (is_executable($path_bin) === false) {
+            } elseif (is_executable($path_bin) === false) {
                 $perms = substr(sprintf('%o', fileperms($path_bin)), -4);
                 $response->setError(sprintf('Impossible to execute binary file - Set correct chmod (current chmod %s)<br />Command line : %s', $perms, $data));
             }

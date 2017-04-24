@@ -71,6 +71,15 @@ abstract class SipsBinaryResult extends AbstractResponse
     }
 
     /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->getError();
+    }
+
+
+    /**
      * Is the response successful?
      *
      * @return boolean

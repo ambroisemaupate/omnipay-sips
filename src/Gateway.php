@@ -13,7 +13,6 @@ namespace Omnipay\Sips;
 
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Sips\Message\RequestCall;
-use Omnipay\Sips\Message\SipsBinaryResult;
 use Omnipay\Sips\Message\ResponseCall;
 
 /**
