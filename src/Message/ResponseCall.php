@@ -38,12 +38,11 @@ class ResponseCall extends SipsBinaryCall
         return $this->sipsData;
     }
 
-    public function send()
+    public function sendData($data)
     {
-        $params = $this->buildRequest();
         $path_bin = $this->getSipsResponseExecPath();
 
-        $result = exec("$path_bin $params");
+        $result = exec("$path_bin $data");
 
         return $this->response = new ResponseResult($this, $result);
     }
@@ -76,6 +75,6 @@ class ResponseCall extends SipsBinaryCall
      */
     public function getData()
     {
-        return array('DATA' => $this->getSipsData());
+        return $this->buildRequest();
     }
 }

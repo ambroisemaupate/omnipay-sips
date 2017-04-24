@@ -5,7 +5,6 @@ namespace Omnipay\Sips\Message;
 use Guzzle\Http\ClientInterface;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Sips\Merchant;
-
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**

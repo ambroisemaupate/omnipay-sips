@@ -2,8 +2,6 @@
 
 namespace Omnipay\Sips\Message;
 
-use Doctrine\ORM\Persisters\AbstractEntityInheritancePersister;
-use Omnipay\Sips\Message\RequestCall;
 
 /**
  * Sips Authorize Response

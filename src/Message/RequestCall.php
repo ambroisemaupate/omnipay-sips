@@ -18,21 +18,20 @@ class RequestCall extends SipsBinaryCall
      *
      * @return RequestResult
      */
-    public function send()
+    public function sendData($data)
     {
-        $params = $this->buildRequest();
         $path_bin = $this->getSipsRequestExecPath();
 
-        $result = shell_exec("$path_bin $params");
+        $result = shell_exec("$path_bin $data");
         $response = $this->response = new RequestResult($this, $result);
 
         if (empty($result)) {
             if (file_exists($path_bin) === false) {
-                $response->setError(sprintf('Impossible to launch binary file - Path to binary file seem to be not correct (%s)<br />Command line : %s', $path_bin, $params));
+                $response->setError(sprintf('Impossible to launch binary file - Path to binary file seem to be not correct (%s)<br />Command line : %s', $path_bin, $data));
             }
             else if (is_executable($path_bin) === false) {
                 $perms = substr(sprintf('%o', fileperms($path_bin)), -4);
-                $response->setError(sprintf('Impossible to execute binary file - Set correct chmod (current chmod %s)<br />Command line : %s', $perms, $params));
+                $response->setError(sprintf('Impossible to execute binary file - Set correct chmod (current chmod %s)<br />Command line : %s', $perms, $data));
             }
         }
 
@@ -50,24 +49,18 @@ class RequestCall extends SipsBinaryCall
         $card = $this->getCard();
 
         $params = array(
-
             'pathfile' => $this->getSipsPathFilePath(),
-
             'merchant_id' => $this->getMerchant()->getId(),
             'merchant_language' => $this->getMerchant()->getLanguage(),
             'merchant_country' => $this->getMerchant()->getCountry(),
-
             'amount' => sprintf('%1$03d', $this->getAmountInteger()),
             'currency_code' => $this->getCurrencyNumeric(),
             'transaction_id' => $this->getTransactionId(),
             'order_id' => $this->getTransactionReference(),
-
             'customer_email' => $card ? $card->getEmail() : '',
             'customer_ip_address' => $this->getClientIp(),
-
             'caddie' => $this->buildCaddie(),
             'return_context' => $this->getReturnContext(),
-
             'cancel_return_url' => $this->getCancelUrl(),
             'automatic_response_url' => $this->getNotifyUrl(),
             'normal_return_url' => $this->getReturnUrl()
@@ -89,7 +82,6 @@ class RequestCall extends SipsBinaryCall
      */
     protected function buildCaddie()
     {
-
         /** @var CreditCard $card */
         $card = $this->getCard();
 
@@ -118,6 +110,6 @@ class RequestCall extends SipsBinaryCall
     {
         $this->validate('amount', 'card');
         $this->getCard()->validate();
-        return array('amount' => $this->getAmount());
+        return $this->buildRequest();
     }
 }

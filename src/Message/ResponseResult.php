@@ -2,8 +2,6 @@
 
 namespace Omnipay\Sips\Message;
 
-use Omnipay\Sips\Message\RequestCall;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Sips Authorize Response

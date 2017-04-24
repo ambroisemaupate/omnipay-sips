@@ -2,11 +2,8 @@
 
 namespace Omnipay\Sips\Message;
 
-
 use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Sips\Message\SipsBinaryCall;
-
 
 /**
  * Class SipsBinaryResult
