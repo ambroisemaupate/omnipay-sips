@@ -43,25 +43,34 @@ class ResponseResult extends SipsBinaryResult
             'captureDay',
             'captureMode',
             'data',
-            'transactionCondition'
+            'orderValidity',
+            'transactionCondition',
+            'statementReference',
+            'cardValidity',
+            'scoreValue',
+            'scoreColor',
+            'scoreInfo',
+            'scoreThreshold',
+            'scoreProfile'
         );
     }
 
     private $transactionId;
-
     private $orderId;
-
     private $caddie;
-
     private $cardNumber;
-
     private $amount;
-
     private $transmissionDate;
-
     private $returnContext;
-
+    private $orderValidity;
     private $transactionCondition;
+    private $statementReference;
+    private $cardValidity;
+    private $scoreValue;
+    private $scoreColor;
+    private $scoreInfo;
+    private $scoreThreshold;
+    private $scoreProfile;
 
     /**
      * A list of payment means
@@ -580,11 +589,168 @@ class ResponseResult extends SipsBinaryResult
     }
 
     /**
+     * Contient le résultat de l’authentification du paiement.
+     * 
      * @return mixed
      */
     public function getTransactionCondition()
     {
         return $this->transactionCondition;
+    }
+
+
+    /**
+     * Ce champ permet au commerçant de transmettre des informations à afficher
+     * sur son relevé de compte et celui de ses clients. L’utilisation de ce champ
+     * est soumise à un accord bilatéral préalable entre le commerçant et sa banque acquéreur.
+     * Toute information transmise dans ce champ par le commerçant lors de la requête
+     * de paiement est renvoyée dans la réponse sans modification.
+     *
+     * @return mixed
+     */
+    public function getStatementReference()
+    {
+        return $this->statementReference;
+    }
+
+    /**
+     * @param mixed $statementReference
+     * @return ResponseResult
+     */
+    public function setStatementReference($statementReference)
+    {
+        $this->statementReference = $statementReference;
+        return $this;
+    }
+
+    /**
+     * Contient la date de validité de la carte bancaire pour une opération de
+     * demande d’autorisation. Si la carte ne possède pas de date de
+     * validité, ce champ doit être vide.
+     *
+     * @return mixed
+     */
+    public function getCardValidity()
+    {
+        return $this->cardValidity;
+    }
+
+    /**
+     * @param mixed $cardValidity
+     * @return ResponseResult
+     */
+    public function setCardValidity($cardValidity)
+    {
+        $this->cardValidity = $cardValidity;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScoreValue()
+    {
+        return $this->scoreValue;
+    }
+
+    /**
+     * @param mixed $scoreValue
+     * @return ResponseResult
+     */
+    public function setScoreValue($scoreValue)
+    {
+        $this->scoreValue = $scoreValue;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScoreColor()
+    {
+        return $this->scoreColor;
+    }
+
+    /**
+     * @param mixed $scoreColor
+     * @return ResponseResult
+     */
+    public function setScoreColor($scoreColor)
+    {
+        $this->scoreColor = $scoreColor;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScoreInfo()
+    {
+        return $this->scoreInfo;
+    }
+
+    /**
+     * @param mixed $scoreInfo
+     * @return ResponseResult
+     */
+    public function setScoreInfo($scoreInfo)
+    {
+        $this->scoreInfo = $scoreInfo;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScoreThreshold()
+    {
+        return $this->scoreThreshold;
+    }
+
+    /**
+     * @param mixed $scoreThreshold
+     * @return ResponseResult
+     */
+    public function setScoreThreshold($scoreThreshold)
+    {
+        $this->scoreThreshold = $scoreThreshold;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScoreProfile()
+    {
+        return $this->scoreProfile;
+    }
+
+    /**
+     * @param mixed $scoreProfile
+     * @return ResponseResult
+     */
+    public function setScoreProfile($scoreProfile)
+    {
+        $this->scoreProfile = $scoreProfile;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderValidity()
+    {
+        return $this->orderValidity;
+    }
+
+    /**
+     * @param mixed $orderValidity
+     * @return $this
+     */
+    public function setOrderValidity($orderValidity)
+    {
+        $this->orderValidity = $orderValidity;
+        return $this;
     }
 
     /**
@@ -594,7 +760,6 @@ class ResponseResult extends SipsBinaryResult
      */
     public function getResponseStatus()
     {
-        // TODO Translattion
         $statuses = array(
             '00' => 'Autorisation acceptée',
             '02' => 'Demande d’autorisation par téléphone à la banque à cause d’un dépassement de plafond d’autorisation sur la carte',
