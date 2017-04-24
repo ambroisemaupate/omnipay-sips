@@ -48,6 +48,10 @@ class RequestCall extends SipsBinaryCall
         $card = $this->getCard();
 
         $params = array(
+            'advert' => $this->getAdvert(),
+            'logo_id' => $this->getLogoId(),
+            'logo_id2' => $this->getLogoId2(),
+            'background_id' => $this->getBackgroundId(),
             'pathfile' => $this->getSipsPathFilePath(),
             'merchant_id' => $this->getMerchant()->getId(),
             'merchant_language' => $this->getMerchant()->getLanguage(),
@@ -56,7 +60,7 @@ class RequestCall extends SipsBinaryCall
             'currency_code' => $this->getCurrencyNumeric(),
             'transaction_id' => $this->getTransactionId(),
             'order_id' => $this->getTransactionReference(),
-            'customer_email' => $card ? $card->getEmail() : '',
+            'customer_email' => $card->getEmail(),
             'customer_ip_address' => $this->getClientIp(),
             'caddie' => $this->buildCaddie(),
             'return_context' => $this->getReturnContext(),
@@ -64,6 +68,8 @@ class RequestCall extends SipsBinaryCall
             'automatic_response_url' => $this->getNotifyUrl(),
             'normal_return_url' => $this->getReturnUrl()
         );
+
+        $params = array_filter($params);
 
         $response = array();
         foreach ($params as $key => $value) {

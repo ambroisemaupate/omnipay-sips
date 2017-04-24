@@ -15,6 +15,9 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
  */
 abstract class SipsBinaryCall extends AbstractRequest
 {
+    /**
+     * @var string
+     */
     protected $returnContext;
 
     /**
@@ -24,8 +27,25 @@ abstract class SipsBinaryCall extends AbstractRequest
      */
     protected $merchant;
 
+    /**
+     * @var string
+     */
+    protected $logoId;
 
-    #region merchant setters
+    /**
+     * @var string
+     */
+    protected $logoId2;
+
+    /**
+     * @var string
+     */
+    protected $backgroundId;
+
+    /**
+     * @var string
+     */
+    protected $advert;
 
     /**
      * Sets the merchant id
@@ -148,6 +168,79 @@ abstract class SipsBinaryCall extends AbstractRequest
     {
         return $this->returnContext;
     }
+
+    /**
+     * @return string
+     */
+    public function getLogoId()
+    {
+        return $this->logoId;
+    }
+
+    /**
+     * @param string $logoId
+     * @return SipsBinaryCall
+     */
+    public function setLogoId($logoId)
+    {
+        $this->logoId = $logoId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogoId2()
+    {
+        return $this->logoId2;
+    }
+
+    /**
+     * @param string $logoId2
+     * @return SipsBinaryCall
+     */
+    public function setLogoId2($logoId2)
+    {
+        $this->logoId2 = $logoId2;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundId()
+    {
+        return $this->backgroundId;
+    }
+
+    /**
+     * @param string $backgroundId
+     * @return SipsBinaryCall
+     */
+    public function setBackgroundId($backgroundId)
+    {
+        $this->backgroundId = $backgroundId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
+    }
+
+    /**
+     * @param string $advert
+     * @return SipsBinaryCall
+     */
+    public function setAdvert($advert)
+    {
+        $this->advert = $advert;
+        return $this;
+    }
+
 
     /**
      * Create a new Request
