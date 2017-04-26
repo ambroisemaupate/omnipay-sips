@@ -532,6 +532,16 @@ class ResponseResult extends SipsBinaryResult
     }
 
     /**
+     * Gateway Reference
+     *
+     * @return null|string A reference provided by the gateway to represent this transaction
+     */
+    public function getTransactionReference()
+    {
+        return $this->getOrderId();
+    }
+
+    /**
      * @param mixed $transmissionDate
      *
      * @return ResponseResult
@@ -766,7 +776,7 @@ class ResponseResult extends SipsBinaryResult
             '03' => 'Contrat de vente inexistant',
             '05' => 'Autorisation refusée',
             '12' => 'Transaction invalide, vérifier les paramètres transmis',
-            '17' => 'Annulation de l\'internaute',
+            '17' => 'Annulation de l’internaute',
             '30' => 'Erreur de format',
             '34' => 'Suspicion de fraude',
             '75' => 'Nombre de tentatives de saisie du numéro de carte dépassé',
@@ -780,7 +790,7 @@ class ResponseResult extends SipsBinaryResult
             return $statuses[$this->responseCode];
         }
         else {
-            return 'Code réponse inconnu : '.$this->responseCode;
+            return 'Code réponse inconnu : '.$this->responseCode;
         }
     }
 }
