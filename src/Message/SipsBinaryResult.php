@@ -82,6 +82,8 @@ abstract class SipsBinaryResult extends AbstractResponse
     /**
      * Is the response successful?
      *
+     * At this level we just test if binary call is successful.
+     *
      * @return boolean
      */
     public function isSuccessful()

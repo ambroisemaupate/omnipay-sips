@@ -776,13 +776,32 @@ class ResponseResult extends SipsBinaryResult
         return $this;
     }
 
-
     /**
      * @return bool
      */
     public function isTransactionAccepted()
     {
         return $this->responseCode === static::BANK_RESPONSE_OK;
+    }
+
+    /**
+     * Is the response successful?
+     *
+     * @return boolean
+     */
+    public function isSuccessful()
+    {
+        return (0 == $this->getCode() && $this->isTransactionAccepted());
+    }
+
+    /**
+     * Is the transaction cancelled by the user?
+     *
+     * @return boolean
+     */
+    public function isCancelled()
+    {
+        return (0 == $this->getCode() && $this->responseCode === static::BANK_RESPONSE_CANCELLED_BY_USER);
     }
 
     /**

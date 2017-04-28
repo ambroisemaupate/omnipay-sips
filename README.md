@@ -4,6 +4,11 @@ Forked from [cleverage/omnipay](https://github.com/cleverage/omnipay/tree/86393d
 
 ## Usage
 
+### 1. Generating a credit card form
+
+Before being redirected to bank website, we must generate a credit-card form using
+SIPS binary and gateway `purchase` method. 
+
 ```php
 $gateway = \Omnipay\Omnipay::create('Sips');
 $gateway->setMerchantId('XXXXXXXXXXXXXXXXX');
@@ -33,9 +38,30 @@ if ($response->isSuccessful()) {
 }
 ```
 
-## Numéros de carte de tests
+### 2. Receiving bank notification
 
-| Numéro | Réponse |
+After customer filled up his credit card informations on bank website, a `POST` request
+will be send with a `DATA` content. This must be decoded using SIPS binary and `completePurchase` gateway method.
+
+```php
+// Send completePurchase request
+$request = $gateway->completePurchase(
+    [
+        'sipsData' => $request->request->get('DATA'),
+    ]
+);
+$response = $request->send();
+
+if ($response->isSuccessful()) {
+    echo $response->getTransactionId();
+} else {
+    echo $response->getMessage();
+}
+```
+
+## Test credit card numbers
+
+| Number | Response |
 | --- | --- |
-| 4974934125497800 | 00 (acceptée) |
-| 4972187615205 | 05 (refusée) |
+| 4974934125497800 | 00 (accepted) |
+| 4972187615205 | 05 (refused) |
