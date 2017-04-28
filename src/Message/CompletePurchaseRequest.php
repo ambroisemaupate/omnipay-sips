@@ -3,13 +3,13 @@
 namespace Omnipay\Sips\Message;
 
 /**
- * Class ResponseCall
+ * Class CompletePurchaseRequest
  *
  * Defines a call to the Sips Response binary
  *
  * @package Omnipay\Sips\Message
  */
-class ResponseCall extends SipsBinaryCall
+class CompletePurchaseRequest extends SipsBinaryRequest
 {
     /**
      * Raw data coming back from Sips
@@ -44,7 +44,7 @@ class ResponseCall extends SipsBinaryCall
 
         $result = exec("$path_bin $data");
 
-        return $this->response = new ResponseResult($this, $result);
+        return $this->response = new CompletePurchaseResponse($this, $result);
     }
 
     /**

@@ -1,12 +1,11 @@
 <?php
 
 namespace Omnipay\Sips\Message;
-
-
 /**
- * Sips Authorize Response
+ * Class PurchaseResponse
+ * @package Omnipay\Sips\Message
  */
-class RequestResult extends SipsBinaryResult
+class PurchaseResponse extends SipsBinaryResponse
 {
     /**
      * A html code buffer

@@ -5,25 +5,25 @@ namespace Omnipay\Sips\Message;
 use Omnipay\Common\CreditCard;
 
 /**
- * Class RequestCall
+ * Class PurchaseRequest
  *
  * Defines a call to the Sips Request binary
  *
  * @package Omnipay\Sips\Message
  */
-class RequestCall extends SipsBinaryCall
+class PurchaseRequest extends SipsBinaryRequest
 {
     /**
      * Sends request to the Sips binary file for payment authorization
      *
-     * @return RequestResult
+     * @return PurchaseResponse
      */
     public function sendData($data)
     {
         $path_bin = $this->getSipsRequestExecPath();
 
         $result = shell_exec("$path_bin $data");
-        $response = $this->response = new RequestResult($this, $result);
+        $response = $this->response = new PurchaseResponse($this, $result);
 
         if (empty($result)) {
             if (file_exists($path_bin) === false) {

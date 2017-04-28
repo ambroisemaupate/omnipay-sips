@@ -6,12 +6,12 @@ use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
- * Class SipsBinaryResult
+ * Class SipsBinaryResponse
  * Represents the result of a Sips binary call
  *
  * @package Omnipay\Sips\Message
  */
-abstract class SipsBinaryResult extends AbstractResponse
+abstract class SipsBinaryResponse extends AbstractResponse
 {
     /**
      * The return code of the call
@@ -99,11 +99,11 @@ abstract class SipsBinaryResult extends AbstractResponse
     abstract protected function getResultComponents();
 
     /**
-     * @param SipsBinaryCall $request
+     * @param SipsBinaryRequest $request
      * @param $data
      * @param string $class
      */
-    public function __construct(SipsBinaryCall $request, $data, $class = '\Omnipay\Sips\Message\SipsBinaryResult')
+    public function __construct(SipsBinaryRequest $request, $data, $class = '\Omnipay\Sips\Message\SipsBinaryResponse')
     {
         parent::__construct($request, $data);
 

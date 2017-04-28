@@ -12,8 +12,8 @@
 namespace Omnipay\Sips;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Sips\Message\RequestCall;
-use Omnipay\Sips\Message\ResponseCall;
+use Omnipay\Sips\Message\PurchaseRequest;
+use Omnipay\Sips\Message\CompletePurchaseRequest;
 
 /**
  * Sips Gateway
@@ -88,14 +88,14 @@ class Gateway extends AbstractGateway
      * therefore the purchase action combines authorization and capture
      *
      * @param array $options
-     * @return \Omnipay\Common\Message\RequestInterface|RequestCall
+     * @return \Omnipay\Common\Message\RequestInterface|PurchaseRequest
      */
     public function purchase(array $options = array())
     {
         $parameters['merchandId'] = $this->getMerchantId();
         $parameters['sipsFolderPath'] = $this->getSipsFolderPath();
 
-        return $this->createRequest('\Omnipay\Sips\Message\RequestCall', $options);
+        return $this->createRequest('\Omnipay\Sips\Message\PurchaseRequest', $options);
     }
 
     /**
@@ -104,10 +104,10 @@ class Gateway extends AbstractGateway
      * the user coming back
      *
      * @param array $options
-     * @return \Omnipay\Common\Message\RequestInterface|ResponseCall
+     * @return \Omnipay\Common\Message\RequestInterface|CompletePurchaseRequest
      */
     public function completePurchase(array $options = array())
     {
-        return $this->createRequest('\Omnipay\Sips\Message\ResponseCall', $options);
+        return $this->createRequest('\Omnipay\Sips\Message\CompletePurchaseRequest', $options);
     }
 }

@@ -8,12 +8,12 @@ use Omnipay\Sips\Merchant;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
- * Class SipsBinaryCall
+ * Class SipsBinaryRequest
  * Represents a call to a Sips binary
  *
  * @package Omnipay\Sips\Message
  */
-abstract class SipsBinaryCall extends AbstractRequest
+abstract class SipsBinaryRequest extends AbstractRequest
 {
     /**
      * @var string
@@ -152,7 +152,7 @@ abstract class SipsBinaryCall extends AbstractRequest
     /**
      * @param mixed $returnContext
      *
-     * @return SipsBinaryCall
+     * @return SipsBinaryRequest
      */
     public function setReturnContext($returnContext)
     {
@@ -179,7 +179,7 @@ abstract class SipsBinaryCall extends AbstractRequest
 
     /**
      * @param string $logoId
-     * @return SipsBinaryCall
+     * @return SipsBinaryRequest
      */
     public function setLogoId($logoId)
     {
@@ -197,7 +197,7 @@ abstract class SipsBinaryCall extends AbstractRequest
 
     /**
      * @param string $logoId2
-     * @return SipsBinaryCall
+     * @return SipsBinaryRequest
      */
     public function setLogoId2($logoId2)
     {
@@ -215,7 +215,7 @@ abstract class SipsBinaryCall extends AbstractRequest
 
     /**
      * @param string $backgroundId
-     * @return SipsBinaryCall
+     * @return SipsBinaryRequest
      */
     public function setBackgroundId($backgroundId)
     {
@@ -233,7 +233,7 @@ abstract class SipsBinaryCall extends AbstractRequest
 
     /**
      * @param string $advert
-     * @return SipsBinaryCall
+     * @return SipsBinaryRequest
      */
     public function setAdvert($advert)
     {

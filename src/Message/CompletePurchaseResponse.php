@@ -2,11 +2,11 @@
 
 namespace Omnipay\Sips\Message;
 
-
 /**
- * Sips Authorize Response
+ * Class CompletePurchaseResponse
+ * @package Omnipay\Sips\Message
  */
-class ResponseResult extends SipsBinaryResult
+class CompletePurchaseResponse extends SipsBinaryResponse
 {
     const BANK_RESPONSE_OK = '00';
     const BANK_RESPONSE_PHONE_AUTHORIZATION = '02';
@@ -447,7 +447,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $amount
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setAmount($amount)
     {
@@ -467,7 +467,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $caddie
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setCaddie($caddie)
     {
@@ -487,7 +487,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $cardNumber
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setCardNumber($cardNumber)
     {
@@ -507,7 +507,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $orderId
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setOrderId($orderId)
     {
@@ -527,7 +527,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $transactionId
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setTransactionId($transactionId)
     {
@@ -557,7 +557,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $transmissionDate
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setTransmissionDate($transmissionDate)
     {
@@ -582,7 +582,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $returnContext
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setReturnContext($returnContext)
     {
@@ -602,7 +602,7 @@ class ResponseResult extends SipsBinaryResult
     /**
      * @param mixed $transactionCondition
      *
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setTransactionCondition($transactionCondition)
     {
@@ -638,7 +638,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $statementReference
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setStatementReference($statementReference)
     {
@@ -660,7 +660,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $cardValidity
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setCardValidity($cardValidity)
     {
@@ -678,7 +678,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $scoreValue
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setScoreValue($scoreValue)
     {
@@ -696,7 +696,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $scoreColor
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setScoreColor($scoreColor)
     {
@@ -714,7 +714,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $scoreInfo
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setScoreInfo($scoreInfo)
     {
@@ -732,7 +732,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $scoreThreshold
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setScoreThreshold($scoreThreshold)
     {
@@ -750,7 +750,7 @@ class ResponseResult extends SipsBinaryResult
 
     /**
      * @param mixed $scoreProfile
-     * @return ResponseResult
+     * @return CompletePurchaseResponse
      */
     public function setScoreProfile($scoreProfile)
     {
