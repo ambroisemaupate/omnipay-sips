@@ -8,6 +8,19 @@ namespace Omnipay\Sips\Message;
  */
 class ResponseResult extends SipsBinaryResult
 {
+    const BANK_RESPONSE_OK = '00';
+    const BANK_RESPONSE_PHONE_AUTHORIZATION = '02';
+    const BANK_RESPONSE_INVALID_MERCHANT = '03';
+    const BANK_RESPONSE_HOLD_CARD = '04';
+    const BANK_RESPONSE_REFUSED = '05';
+    const BANK_RESPONSE_INVALID_TRANSACTION = '12';
+    const BANK_RESPONSE_INVALID_CARD_NUMBER = '14';
+    const BANK_RESPONSE_CANCELLED_BY_USER = '17';
+    const BANK_RESPONSE_FORMAT_ERROR = '30';
+    const BANK_RESPONSE_FRAUD_ATTEMPT = '34';
+    const BANK_RESPONSE_TOO_MUCH_ATTEMPTS = '75';
+    const BANK_RESPONSE_SERVICE_UNAVAILABLE = '90';
+
     protected function getResultComponents()
     {
         return array(
@@ -763,6 +776,15 @@ class ResponseResult extends SipsBinaryResult
         return $this;
     }
 
+
+    /**
+     * @return bool
+     */
+    public function isTransactionAccepted()
+    {
+        return $this->responseCode === static::BANK_RESPONSE_OK;
+    }
+
     /**
      * Gets a response status from the response code
      *
@@ -771,16 +793,18 @@ class ResponseResult extends SipsBinaryResult
     public function getResponseStatus()
     {
         $statuses = array(
-            '00' => 'Autorisation acceptée',
-            '02' => 'Demande d’autorisation par téléphone à la banque à cause d’un dépassement de plafond d’autorisation sur la carte',
-            '03' => 'Contrat de vente inexistant',
-            '05' => 'Autorisation refusée',
-            '12' => 'Transaction invalide, vérifier les paramètres transmis',
-            '17' => 'Annulation de l’internaute',
-            '30' => 'Erreur de format',
-            '34' => 'Suspicion de fraude',
-            '75' => 'Nombre de tentatives de saisie du numéro de carte dépassé',
-            '90' => 'Service temporairement indisponible'
+            static::BANK_RESPONSE_OK => 'Autorisation acceptée',
+            static::BANK_RESPONSE_PHONE_AUTHORIZATION => 'Demande d’autorisation par téléphone à la banque à cause d’un dépassement de plafond d’autorisation sur la carte',
+            static::BANK_RESPONSE_INVALID_MERCHANT => 'Contrat de vente inexistant',
+            static::BANK_RESPONSE_HOLD_CARD => 'Conserver la carte',
+            static::BANK_RESPONSE_REFUSED => 'Autorisation refusée',
+            static::BANK_RESPONSE_INVALID_TRANSACTION => 'Transaction invalide, vérifier les paramètres transmis',
+            static::BANK_RESPONSE_INVALID_CARD_NUMBER => 'Numéro de porteur invalide',
+            static::BANK_RESPONSE_CANCELLED_BY_USER => 'Annulation de l’internaute',
+            static::BANK_RESPONSE_FORMAT_ERROR => 'Erreur de format',
+            static::BANK_RESPONSE_FRAUD_ATTEMPT => 'Suspicion de fraude',
+            static::BANK_RESPONSE_TOO_MUCH_ATTEMPTS => 'Nombre de tentatives de saisie du numéro de carte dépassé',
+            static::BANK_RESPONSE_SERVICE_UNAVAILABLE => 'Service temporairement indisponible'
         );
 
         if(!isset($this->responseCode)){
