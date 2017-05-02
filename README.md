@@ -4,6 +4,10 @@ Forked from [cleverage/omnipay](https://github.com/cleverage/omnipay/tree/86393d
 
 ## Usage
 
+Every calls to SIPS binary may throw a `SipsBinaryException` if shell exec is mis-configured (`-1` return code). However, an *accepted* or
+*refused* payment should return a `0` code from SIPS binary. That’s why `isSuccessful` method does not care about 
+binary return code but **responseCode**.
+
 ### 1. Generating a credit card form
 
 Before being redirected to bank website, we must generate a credit-card form using

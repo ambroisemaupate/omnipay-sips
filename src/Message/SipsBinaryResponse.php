@@ -4,6 +4,7 @@ namespace Omnipay\Sips\Message;
 
 use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Sips\Exception\SipsBinaryException;
 
 /**
  * Class SipsBinaryResponse
@@ -82,14 +83,9 @@ abstract class SipsBinaryResponse extends AbstractResponse
     /**
      * Is the response successful?
      *
-     * At this level we just test if binary call is successful.
-     *
      * @return boolean
      */
-    public function isSuccessful()
-    {
-        return (0 == $this->code);
-    }
+    abstract public function isSuccessful();
 
     /**
      * Gets the result components
@@ -128,6 +124,10 @@ abstract class SipsBinaryResponse extends AbstractResponse
             $parameters = array_combine($components, $results);
 
             Helper::initialize($this, $parameters);
+
+            if (0 != $this->code) {
+                throw new SipsBinaryException($this->getMessage(), $this);
+            }
         }
     }
 }

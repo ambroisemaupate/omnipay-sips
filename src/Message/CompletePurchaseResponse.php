@@ -791,7 +791,7 @@ class CompletePurchaseResponse extends SipsBinaryResponse
      */
     public function isSuccessful()
     {
-        return (0 == $this->getCode() && $this->isTransactionAccepted());
+        return $this->isTransactionAccepted();
     }
 
     /**
@@ -801,7 +801,7 @@ class CompletePurchaseResponse extends SipsBinaryResponse
      */
     public function isCancelled()
     {
-        return (0 == $this->getCode() && $this->responseCode === static::BANK_RESPONSE_CANCELLED_BY_USER);
+        return $this->responseCode === static::BANK_RESPONSE_CANCELLED_BY_USER;
     }
 
     /**

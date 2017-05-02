@@ -35,6 +35,14 @@ class PurchaseResponse extends SipsBinaryResponse
     }
 
     /**
+     * @return bool
+     */
+    public function isSuccessful()
+    {
+        return (0 == $this->getCode());
+    }
+
+    /**
      * @inheritdoc
      */
     protected function getResultComponents()
